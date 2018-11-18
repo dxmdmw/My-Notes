@@ -63,3 +63,6 @@ class Solution():
                 res.append(nums[window[0]])
         return res
 ```
+
+
+https://thenewstack.io/linkedin-code-review/
