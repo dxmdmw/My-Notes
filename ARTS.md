@@ -1,3 +1,4 @@
+1. Algorithm：每周至少做一个 leetcode 的算法题
 
 给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口 k 内的数字。滑动窗口每次只向右移动一位。
 
@@ -64,5 +65,7 @@ class Solution():
         return res
 ```
 
+2. Review：阅读并点评至少一篇英文技术文章
+4. Share：分享一篇有观点和思考的技术文章
 
 https://thenewstack.io/linkedin-code-review/
