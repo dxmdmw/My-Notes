@@ -142,3 +142,79 @@ var pow3 = make_pow(3);
 console.log(pow2(5)); // 25
 console.log(pow3(7)); // 343
 ```
+
+## JavaScript 中的 generator
+我们先复习函数的概念。一个函数是一段完整的代码，调用一个函数就是传入参数，然后返回结果：
+```js
+function foo(x) {
+    return x + x;
+}
+
+var r = foo(1); // 调用foo函数
+```
+函数在执行过程中，如果没有遇到 `return` 语句（函数末尾如果没有 `return`，就是隐含的 `return undefined;`），控制权无法交回被调用的代码。  
+`generator` 跟函数很像，定义如下：  
+```js
+function* foo(x) {
+    yield x + 1;
+    yield x + 2;
+    return x + 3;
+}
+```
+`generator` 与函数不同的是，`generator` 由 `function*` 定义，并且除了 `return` 语句，还可以用 `yield` 返回多次。  
+我们以斐波那契数列为例，它以 `0`，`1` 开头：  
+```
+0 1 1 2 3 5 8 13 21 34 ...
+```
+要编写一个产生斐波那契数列的函数，可以这么写：
+```js
+function fib(max) {
+    var 
+        t,
+        a = 0,
+        b = 1,
+        arr = [0, 1];
+    while (arr.length < max) {
+        [a, b] = [b, a+b];
+        arr.push(b);
+    }
+    return arr; 
+}
+```
+函数只能返回一次，所以只能返回一个 `Array`。但是如果换成 generator，就可以一次返回一个数，不断返回多次。用 generator 改写如下：  
+```js
+function fib(max) {
+    var 
+        t,
+        a = 0,
+        b = 1,
+        n = 0;
+    while (n < max) {
+        yield a;
+        [a, b] = [b, a+b];
+        n++;
+    }
+    return;
+}
+```
+直接调用会返回一个 generator：
+```js
+fib(5); // fib {[[GeneratorStatus]]: "suspended", [[GeneratorReceiver]]: Window}
+```
+调用 generator 对象有两个方法，一个是不断调用 generator 对象的 `next()` 方法：
+```js
+var f = fib(5);
+f.next(); // {value: 0, done: false}
+f.next(); // {value: 1, done: false}
+f.next(); // {value: 1, done: false}
+f.next(); // {value: 2, done: false}
+f.next(); // {value: 3, done: false}
+f.next(); // {value: undefined, done: true}
+```
+`next()` 方法会执行 generator 的代码，然后，每次遇到 `yield x;` 就返回一个对象 `{value: x, done: true/false}`，然后“暂停”。返回的 `value` 就是 `yield` 的返回值，`done` 表示这个 generator 是否已经执行结束了。如果 `done` 为 `true`，则 `value` 就是 `return` 的返回值。  
+第二种方法就是直接用 `for ... of` 循环迭代 generator 对象，这种方式不需要我们自己判断 `done`：
+```js
+for (var x of fib(10)) {
+    console.log(x); // 依次输出 0, 1, 1, 2, 3, ...
+}
+```
