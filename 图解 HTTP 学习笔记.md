@@ -470,8 +470,8 @@ https://www.w3.org/TR/P3P/
 使用 HTTP 协议确定报文完整性的方法，比如 MD5 和 SHA-1 等散列值校验的方法以及用来确认文件的数字签名方法，事实上并不便捷、可靠。  
 因为其本身被改写，就无法用来判断。因此有必要使用 HTTPS。
 ## 7.2 HTTP + 加密 + 认证 + 完整性保护 = HTTPS
-# 7.2.1 HTTP 加上加密处理和认证以及完整性保护后即是 HTTPS
-# 7.2.2 HTTPS 是身披 SSL 外壳的 HTTP
+### 7.2.1 HTTP 加上加密处理和认证以及完整性保护后即是 HTTPS
+### 7.2.2 HTTPS 是身披 SSL 外壳的 HTTP
 HTTPS 是 HTTP 通信接口部分用 SSL 和 TLS 协议代替。  
 通常 HTTP 直接和 TCP 通信，但是用 SSL 时，则先和 SSL 通信，再由 SSL 和 TCP 通信。  
 SSL 是独立于 HTTP 的协议，其他运行在应用层的 SMTP 和 Telnet 等协议均可配合 SSL 协议使用。它是当今世界上应用最为广泛的网络安全技术。
