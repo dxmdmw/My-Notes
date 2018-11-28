@@ -1,9 +1,5 @@
 
-## ARTS 第二周 https://www.zhihu.com/question/301150832/answer/534747389
-
-----------------------------------------
-
-## ARTS 第一周 https://www.zhihu.com/question/301150832/answer/534747389
+## ARTS 知乎链接 https://www.zhihu.com/question/301150832/answer/534747389
 
 1. Algorithm：每周至少做一个 leetcode 的算法题
 
